@@ -55,8 +55,9 @@ if [ ! -z "${INPUT_LDFLAGS}" ]; then
 fi
 
 # build
-BUILD_ARTIFACTS_FOLDER=build-artifacts
+BUILD_ARTIFACTS_FOLDER=build-artifacts-${BINARY_NAME}${EXT}
 mkdir -p ${INPUT_PROJECT_PATH}/${BUILD_ARTIFACTS_FOLDER}
+mkdir -p build-artifacts
 cd ${INPUT_PROJECT_PATH}
 if [[ "${INPUT_BUILD_COMMAND}" =~ ^make.* ]]; then
     # start with make, assumes using make to build golang binaries, execute it directly
@@ -104,6 +105,9 @@ fi
 MD5_SUM=$(md5sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 SHA256_SUM=$(sha256sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 
+cp ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} /build-artifacts/
+
+
 # prefix upload extra params 
 GITHUB_ASSETS_UPLOADR_EXTRA_OPTIONS=''
 if [ ${INPUT_OVERWRITE^^} == 'TRUE' ]; then
@@ -119,6 +123,8 @@ echo ${MD5_SUM} >${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT}${MD5_EXT}
 github-assets-uploader -f ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT}${MD5_EXT} -mediatype ${MD5_MEDIA_TYPE} ${GITHUB_ASSETS_UPLOADR_EXTRA_OPTIONS} -repo ${GITHUB_REPOSITORY} -token ${INPUT_GITHUB_TOKEN} -tag ${RELEASE_TAG}
 fi
 
+cp ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT}${MD5_EXT} /build-artifacts/
+
 if [ ${INPUT_SHA256SUM^^} == 'TRUE' ]; then
 SHA256_EXT='.sha256'
 SHA256_MEDIA_TYPE='text/plain'
@@ -128,5 +134,5 @@ fi
 
 
 if [ ${INPUT_REPO_NAME^^} == 'TRUE' ]; then
-     /commit.sh ${SOURCE_DIRECTORY} ${DESTINATION_GITHUB_USERNAME}  ${DESTINATION_REPOSITORY_NAME} ${USER_EMAIL} "${USER_NAME}" "${DESTINATION_REPOSITORY_USERNAME}" "${TARGET_BRANCH}" "${COMMIT_MESSAGE}"
+     /commit.sh ${SOURCE_DIRECTORY} ${DESTINATION_GITHUB_USERNAME}  ${DESTINATION_REPOSITORY_NAME} ${USER_EMAIL} "${USER_NAME}" "${DESTINATION_REPOSITORY_USERNAME}" "${TARGET_BRANCH}" "${COMMIT_MESSAGE}" "${BUILD_ARTIFACTS_FOLDER}"
 fi

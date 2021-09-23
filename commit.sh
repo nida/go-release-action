@@ -4,7 +4,7 @@
 #set -u  # script fails if trying to access to an undefined variable
 
 echo "Starts"
-SOURCE_DIRECTORY="$1"
+SOURCE_DIRECTORY="build-artifacts"
 DESTINATION_GITHUB_USERNAME="$2"
 DESTINATION_REPOSITORY_NAME="$3"
 USER_EMAIL="$4"
@@ -12,6 +12,8 @@ USER_NAME="$5"
 DESTINATION_REPOSITORY_USERNAME="$6"
 TARGET_BRANCH="$7"
 COMMIT_MESSAGE="$8"
+BUILD_ARTIFACTS_FOLDER="$9"
+
 
 if [ -z "$DESTINATION_REPOSITORY_USERNAME" ]
 then
@@ -53,7 +55,7 @@ then
 fi
 
 echo "Copy contents to target git repository"
-cp -ra "$SOURCE_DIRECTORY"/*tar.gz* "$TARGET_DIR"
+cp -ra "$SOURCE_DIRECTORY"/. "$TARGET_DIR"
 cd "$TARGET_DIR"
 
 echo "Files that will be pushed:"
