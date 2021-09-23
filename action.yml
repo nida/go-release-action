@@ -75,6 +75,34 @@ inputs:
     description: 'Use a remote repo name instead of the local'
     required: false
     default: ''
+  source-directory:
+    description: 'Source directory from the origin directory'
+    required: false
+  destination-github-username:
+    description: 'Name of the destination username/organization'
+    required: false
+  destination-repository-name:
+    description: 'Destination repository'
+    required: false
+  user-email:
+    description: 'Email for the git commit'
+    required: false
+  user-name:
+    description: '[Optional] Name for the git commit. Defaults to the destination username/organization name'
+    required: false
+    default: ''
+  destination-repository-username:
+    description: '[Optional] Username/organization for the destination repository'
+    required: false
+    default: ''
+  target-branch:
+    description: '[Optional] set target branch name for the destination repository. Defaults to "master" for historical reasons'
+    default: 'master'
+    required: false
+  commit-message:
+    description: '[Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo'
+    default: 'Update from ORIGIN_COMMIT'
+    required: false
 
 runs:
   using: 'docker'
@@ -98,6 +126,14 @@ runs:
     - ${{ inputs.overwrite }}
     - ${{ inputs.asset_name }}
     - ${{ inputs.repo_name }}
+    - ${{ inputs.source-directory }}
+    - ${{ inputs.destination-github-username }}
+    - ${{ inputs.destination-repository-name }}
+    - ${{ inputs.user-email }}
+    - ${{ inputs.user-name }}
+    - ${{ inputs.destination-repository-username }}
+    - ${{ inputs.target-branch }}
+    - ${{ inputs.commit-message }}
 
 branding:
   icon: 'package'  
