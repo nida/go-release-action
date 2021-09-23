@@ -1,5 +1,5 @@
 # action.yml
-name: 'Go Release Binaries'
+name: 'Go Release Binaries Remote'
 author: 'Nida Sahar <nida.sahar@gmail.com>'
 description: 'Build and Release Go Binaries to GitHub Release Assets'
 inputs:
