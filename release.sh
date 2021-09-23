@@ -105,7 +105,7 @@ fi
 MD5_SUM=$(md5sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 SHA256_SUM=$(sha256sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 
-cp ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} ${INPUT_PROJECT_PATH}/build-artifacts/
+cp ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} ../build-artifacts/
 
 
 # prefix upload extra params 
