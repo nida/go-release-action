@@ -2,6 +2,9 @@
 ![Build Docker](https://github.com/wangyoucao577/go-release-action/workflows/Build%20Docker/badge.svg) ![PR Build](https://github.com/wangyoucao577/go-release-action/workflows/PR%20Build/badge.svg) [![Test](https://github.com/wangyoucao577/go-release-action/actions/workflows/autotest.yml/badge.svg)](https://github.com/wangyoucao577/go-release-action/actions/workflows/autotest.yml)       
 Automatically publish `Go` binaries to Github Release Assets through Github Action.    
 
+##TBD
+Remote Deployment 
+
 ## Features    
 - Build `Go` binaries for release and publish to Github Release Assets.     
 - Customizable `Go` versions. `latest` by default.    
@@ -40,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: wangyoucao577/go-release-action@v1.20
+    - uses: nida/go-release-action@v2.3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: linux
@@ -114,3 +117,4 @@ Welcome share your usage for other people's reference!
 - [wiki/More-Examples](https://github.com/wangyoucao577/go-release-action/wiki/More-Examples)
 
 [:clap:](":clap:")[:clap:](":clap:")[:clap:](":clap:") Enjoy! Welcome [star](https://github.com/wangyoucao577/go-release-action/) if like it[:smile:](:smile:)     
+This is an extension to https://github.com/wangyoucao577/go-release-action
