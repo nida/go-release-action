@@ -44,7 +44,7 @@ if [ ! -z "${INPUT_LDFLAGS}" ]; then
 fi
 
 # build
-BUILD_ARTIFACTS_FOLDER=build-artifacts-$(date +%s)
+BUILD_ARTIFACTS_FOLDER=build-artifacts
 mkdir -p ${INPUT_PROJECT_PATH}/${BUILD_ARTIFACTS_FOLDER}
 cd ${INPUT_PROJECT_PATH}
 if [[ "${INPUT_BUILD_COMMAND}" =~ ^make.* ]]; then
