@@ -4,7 +4,7 @@
 #set -u  # script fails if trying to access to an undefined variable
 
 echo "Starts"
-SOURCE_DIRECTORY="build-artifacts"
+SOURCE_DIRECTORY=/tmp/build-artifacts
 DESTINATION_GITHUB_USERNAME="$2"
 DESTINATION_REPOSITORY_NAME="$3"
 USER_EMAIL="$4"
