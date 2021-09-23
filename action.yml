@@ -71,6 +71,10 @@ inputs:
     description: 'Customize asset name if do not want to use the default format.'
     required: false
     default: ''
+  repo_name:  
+    description: 'Use a remote repo name instead of the local'
+    required: false
+    default: ''
 
 runs:
   using: 'docker'
@@ -93,6 +97,7 @@ runs:
     - ${{ inputs.release_tag }}
     - ${{ inputs.overwrite }}
     - ${{ inputs.asset_name }}
+    - ${{ inputs.repo_name }}
 
 branding:
   icon: 'package'  
