@@ -57,7 +57,7 @@ fi
 # build
 BUILD_ARTIFACTS_FOLDER=build-artifacts-${BINARY_NAME}${EXT}
 mkdir -p ${INPUT_PROJECT_PATH}/${BUILD_ARTIFACTS_FOLDER}
-mkdir -p ${INPUT_PROJECT_PATH}/build-artifacts
+mkdir -p /tmp/build-artifacts
 cd ${INPUT_PROJECT_PATH}
 if [[ "${INPUT_BUILD_COMMAND}" =~ ^make.* ]]; then
     # start with make, assumes using make to build golang binaries, execute it directly
@@ -105,7 +105,7 @@ fi
 MD5_SUM=$(md5sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 SHA256_SUM=$(sha256sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 
-cp ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} ../build-artifacts/
+cp ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} /tmp/build-artifacts
 
 
 # prefix upload extra params 
