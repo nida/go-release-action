@@ -32,7 +32,7 @@ jobs:
       with:
         name: ${{ github.repository }}/${{ env.DOCKER_REPO_NAME }}
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.API_TOKEN_GITHUB }}
         registry: docker.pkg.github.com
         snapshot: false
         tags: "${{ env.IMAGE_TAG }}"
